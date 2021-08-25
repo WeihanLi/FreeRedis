@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class RedisClient.TransactionHook
    ">
-    <meta name="generator" content="docfx 2.56.5.0">
+    <meta name="generator" content="docfx 2.58.2.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -88,6 +88,12 @@
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
+      <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_Adapter">RedisClient.Adapter</a>
+    </div>
+    <div>
+      <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_Prefix">RedisClient.Prefix</a>
+    </div>
+    <div>
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_Interceptors">RedisClient.Interceptors</a>
     </div>
     <div>
@@ -112,10 +118,16 @@
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_Call__1_FreeRedis_CommandPacket_System_Func_FreeRedis_RedisResult___0__">RedisClient.Call&lt;TValue&gt;(CommandPacket, Func&lt;RedisResult, TValue&gt;)</a>
     </div>
     <div>
+      <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_LogCall__1_FreeRedis_CommandPacket_System_Func___0__">RedisClient.LogCall&lt;T&gt;(CommandPacket, Func&lt;T&gt;)</a>
+    </div>
+    <div>
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_Serialize">RedisClient.Serialize</a>
     </div>
     <div>
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_Deserialize">RedisClient.Deserialize</a>
+    </div>
+    <div>
+      <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_DeserializeRaw">RedisClient.DeserializeRaw</a>
     </div>
     <div>
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_Auth_System_String_">RedisClient.Auth(String)</a>
@@ -292,6 +304,9 @@
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_Expire_System_String_System_Int32_">RedisClient.Expire(String, Int32)</a>
     </div>
     <div>
+      <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_Expire_System_String_System_TimeSpan_">RedisClient.Expire(String, TimeSpan)</a>
+    </div>
+    <div>
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_ExpireAt_System_String_System_DateTime_">RedisClient.ExpireAt(String, DateTime)</a>
     </div>
     <div>
@@ -344,6 +359,9 @@
     </div>
     <div>
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_Scan_System_Int64_System_String_System_Int64_System_String_">RedisClient.Scan(Int64, String, Int64, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_Scan_System_String_System_Int64_System_String_">RedisClient.Scan(String, Int64, String)</a>
     </div>
     <div>
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_Sort_System_String_System_String_System_Int64_System_Int64_System_String___System_Nullable_FreeRedis_Collation__System_Boolean_">RedisClient.Sort(String, String, Int64, Int64, String[], Nullable&lt;Collation&gt;, Boolean)</a>
@@ -661,10 +679,13 @@
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_SIsMember__1_System_String___0_">RedisClient.SIsMember&lt;T&gt;(String, T)</a>
     </div>
     <div>
-      <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_SMeMembers_System_String_">RedisClient.SMeMembers(String)</a>
+      <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_SMembers_System_String_">RedisClient.SMembers(String)</a>
     </div>
     <div>
-      <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_SMeMembers__1_System_String_">RedisClient.SMeMembers&lt;T&gt;(String)</a>
+      <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_SMembers__1_System_String_">RedisClient.SMembers&lt;T&gt;(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_SMIsMember__1_System_String_System_Object___">RedisClient.SMIsMember&lt;T&gt;(String, Object[])</a>
     </div>
     <div>
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_SMove__1_System_String_System_String___0_">RedisClient.SMove&lt;T&gt;(String, String, T)</a>
@@ -841,6 +862,12 @@
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_ZUnionStore_System_String_System_String___System_Int32___System_Nullable_FreeRedis_ZAggregate__">RedisClient.ZUnionStore(String, String[], Int32[], Nullable&lt;ZAggregate&gt;)</a>
     </div>
     <div>
+      <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_ZRandMember_System_String_System_Int32_System_Boolean_">RedisClient.ZRandMember(String, Int32, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_ZRandMemberWithScores_System_String_System_Int32_System_Boolean_">RedisClient.ZRandMemberWithScores(String, Int32, Boolean)</a>
+    </div>
+    <div>
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_XAck_System_String_System_String_System_String___">RedisClient.XAck(String, String, String[])</a>
     </div>
     <div>
@@ -1006,16 +1033,28 @@
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_Set__1_System_String___0_System_Int32_">RedisClient.Set&lt;T&gt;(String, T, Int32)</a>
     </div>
     <div>
+      <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_Set__1_System_String___0_System_TimeSpan_">RedisClient.Set&lt;T&gt;(String, T, TimeSpan)</a>
+    </div>
+    <div>
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_Set__1_System_String___0_System_Boolean_">RedisClient.Set&lt;T&gt;(String, T, Boolean)</a>
     </div>
     <div>
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_SetNx__1_System_String___0_System_Int32_">RedisClient.SetNx&lt;T&gt;(String, T, Int32)</a>
     </div>
     <div>
+      <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_SetNx__1_System_String___0_System_TimeSpan_">RedisClient.SetNx&lt;T&gt;(String, T, TimeSpan)</a>
+    </div>
+    <div>
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_SetXx__1_System_String___0_System_Int32_">RedisClient.SetXx&lt;T&gt;(String, T, Int32)</a>
     </div>
     <div>
+      <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_SetXx__1_System_String___0_System_TimeSpan_">RedisClient.SetXx&lt;T&gt;(String, T, TimeSpan)</a>
+    </div>
+    <div>
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_SetXx__1_System_String___0_System_Boolean_">RedisClient.SetXx&lt;T&gt;(String, T, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_Set__1_System_String___0_System_TimeSpan_System_Boolean_System_Boolean_System_Boolean_System_Boolean_">RedisClient.Set&lt;T&gt;(String, T, TimeSpan, Boolean, Boolean, Boolean, Boolean)</a>
     </div>
     <div>
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_SetBit_System_String_System_Int64_System_Boolean_">RedisClient.SetBit(String, Int64, Boolean)</a>
@@ -1067,6 +1106,9 @@
     </div>
     <div>
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_BfInfo_System_String_">RedisClient.BfInfo(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_Lock_System_String_System_Int32_System_Boolean_">RedisClient.Lock(String, Int32, Boolean)</a>
     </div>
     <div>
       <a class="xref" href="FreeRedis.RedisClient.html#FreeRedis_RedisClient_CmsInitByDim_System_String_System_Int64_System_Int64_">RedisClient.CmsInitByDim(String, Int64, Int64)</a>

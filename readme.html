@@ -8,7 +8,7 @@
     <title> &#129412; FreeRedis  </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content=" &#129412; FreeRedis  ">
-    <meta name="generator" content="docfx 2.56.5.0">
+    <meta name="generator" content="docfx 2.58.2.0">
     
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="styles/docfx.vendor.css">
@@ -63,10 +63,14 @@
 <h1 align="center"> 🦄 FreeRedis </h1>
 
 <div align="center">
-<p>FreeRedis is .NET redis client, supports .NETCore 2.1+, .NETFramework 4.0+, And Xamarin</p>
+<p>FreeRedis is a redis client based on .NET, supports .NET Core 2.1+, .NET Framework 4.0+, and Xamarin.</p>
 <p><a href="https://www.nuget.org/packages/FreeRedis"><img src="https://img.shields.io/nuget/v/FreeRedis.svg?style=flat-square" alt="nuget"></a>
 <a href="https://www.nuget.org/stats/packages/FreeRedis?groupby=Version"><img src="https://img.shields.io/nuget/dt/FreeRedis.svg?style=flat-square" alt="stats"></a>
 <a href="https://raw.githubusercontent.com/2881099/FreeRedis/master/LICENSE.txt"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="GitHub license"></a></p>
+<p>
+    <span>English</span> |  
+    <a href="README.zh-CN.html">中文</a>
+</p>
 </div>
 <ul>
 <li>🌈 RedisClient Keep all method names consistent with redis-cli</li>
@@ -82,8 +86,8 @@
 <li>⚡ Support Client-side-cahing (requires redis-server 6.0 and above)</li>
 <li>🌳 Support Redis 6 RESP3 Protocol</li>
 </ul>
-<p>QQ群：4336577(已满)、8578575(在线)、52508226(在线)</p>
-<h4 id="-single-machine-redis-单机">🌈 Single machine redis (单机)</h4>
+<p>QQ Groups：4336577(full)、<strong>8578575(available)</strong>、<strong>52508226(available)</strong></p>
+<h2 id="-quick-start">🚀 Quick start</h2>
 <pre><code class="lang-csharp">public static RedisClient cli = new RedisClient(&quot;127.0.0.1:6379,password=123,defaultDatabase=13&quot;);
 //cli.Serialize = obj =&gt; JsonConvert.SerializeObject(obj);
 //cli.Deserialize = (json, type) =&gt; JsonConvert.DeserializeObject(json, type);
@@ -163,6 +167,11 @@ string[] vals = cli.MGet(&quot;key1&quot;, &quot;key2&quot;);
 <td style="text-align: left;">string charset</td>
 </tr>
 <tr>
+<td style="text-align: left;">retry</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Protocol error retry execution times</td>
+</tr>
+<tr>
 <td style="text-align: left;">ssl</td>
 <td style="text-align: right;">false</td>
 <td style="text-align: left;">Enable encrypted transmission</td>
@@ -175,15 +184,14 @@ string[] vals = cli.MGet(&quot;key1&quot;, &quot;key2&quot;);
 <tr>
 <td style="text-align: left;">prefix</td>
 <td style="text-align: right;">&lt;empty&gt;</td>
-<td style="text-align: left;">key前辍，所有方法都会附带此前辍，cli.Set(prefix + &quot;key&quot;, 111);</td>
+<td style="text-align: left;">The prefix of the key, all methods will have this prefix. cli.Set(prefix + &quot;key&quot;, 111);</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
 <p>IPv6: [fe80::b164:55b3:4b4f:7ce6%15]:6379</p>
 </blockquote>
-<hr>
-<h4 id="-master-slave-读写分离">🎣 Master-Slave (读写分离)</h4>
+<h3 id="-master-slave">🎣 Master-Slave</h3>
 <pre><code class="lang-csharp">public static RedisClient cli = new RedisClient(
     &quot;127.0.0.1:6379,password=123,defaultDatabase=13&quot;,
     &quot;127.0.0.1:6380,password=123,defaultDatabase=13&quot;,
@@ -193,37 +201,36 @@ string[] vals = cli.MGet(&quot;key1&quot;, &quot;key2&quot;);
 var value = cli.Get(&quot;key1&quot;);
 </code></pre>
 <blockquote>
-<p>写入时连接 127.0.0.1:6379，读取时随机连接 6380 6381</p>
+<p>Write data at 127.0.0.1:6379; randomly read data from port 6380 or 6381.</p>
 </blockquote>
-<h4 id="-redis-sentinel-哨兵高可用">⛳ Redis Sentinel (哨兵高可用)</h4>
+<h3 id="-redis-sentinel">⛳ Redis Sentinel</h3>
 <pre><code class="lang-csharp">public static RedisClient cli = new RedisClient(
     &quot;mymaster,password=123&quot;, 
     new [] { &quot;192.169.1.10:26379&quot;, &quot;192.169.1.11:26379&quot;, &quot;192.169.1.12:26379&quot; },
-    true //是否读写分离
+    true //This variable indicates whether to use the read-write separation mode.
     );
 </code></pre>
-<h4 id="-redis-cluster-集群">🌌 Redis Cluster (集群)</h4>
-<p>假如你有一个 Redis Cluster 集群，其中有三个主节点(7001-7003)、三个从节点(7004-7006)，则连接此集群的代码：</p>
+<h3 id="-redis-cluster">🌌 Redis Cluster</h3>
+<p>Suppose, a Redis cluster has three master nodes (7001-7003) and three slave nodes (7004-7006), then use the following code to connect to the cluster:</p>
 <pre><code class="lang-csharp">public static RedisClient cli = new RedisClient(
-    new ConnectionStringBuilder[] { &quot;192.168.0.2:7001&quot;, &quot;192.168.0.2:7001&quot;, &quot;192.168.0.2:7003&quot; }
+    new ConnectionStringBuilder[] { &quot;192.168.0.2:7001&quot;, &quot;192.168.0.2:7002&quot;, &quot;192.168.0.2:7003&quot; }
     );
 </code></pre>
-<hr>
-<h4 id="-client-side-cahing-本地缓存">⚡ Client-side-cahing (本地缓存)</h4>
+<h3 id="-client-side-cahing">⚡ Client-side-cahing</h3>
 <blockquote>
 <p>requires redis-server 6.0 and above</p>
 </blockquote>
 <pre><code class="lang-csharp">cli.UseClientSideCaching(new ClientSideCachingOptions
 {
-    //本地缓存的容量
+    //Client cache capacity
     Capacity = 3,
-    //过滤哪些键能被本地缓存
+    //Filtering rules, which specify which keys can be cached locally
     KeyFilter = key =&gt; key.StartsWith(&quot;Interceptor&quot;),
-    //检查长期未使用的缓存
+    //Check long-term unused cache
     CheckExpired = (key, dt) =&gt; DateTime.Now.Subtract(dt) &gt; TimeSpan.FromSeconds(2)
 });
 </code></pre>
-<h4 id="-subscribe-订阅">📡 Subscribe (订阅)</h4>
+<h3 id="-subscribe">📡 Subscribe</h3>
 <pre><code class="lang-csharp">using (cli.Subscribe(&quot;abc&quot;, ondata)) //wait .Dispose()
 {
     Console.ReadKey();
@@ -232,7 +239,7 @@ var value = cli.Get(&quot;key1&quot;);
 void ondata(string channel, string data) =&gt;
     Console.WriteLine($&quot;{channel} -&gt; {data}&quot;);
 </code></pre>
-<h4 id="-scripting-脚本">📃 Scripting (脚本)</h4>
+<h3 id="-scripting">📃 Scripting</h3>
 <pre><code class="lang-csharp">var r1 = cli.Eval(&quot;return {KEYS[1],KEYS[2],ARGV[1],ARGV[2]}&quot;, 
     new[] { &quot;key1&quot;, &quot;key2&quot; }, &quot;first&quot;, &quot;second&quot;) as object[];
 
@@ -241,7 +248,7 @@ var r2 = cli.Eval(&quot;return {1,2,{3,'Hello World!'}}&quot;) as object[];
 cli.Eval(&quot;return redis.call('set',KEYS[1],'bar')&quot;, 
     new[] { Guid.NewGuid().ToString() })
 </code></pre>
-<h4 id="-pipeline-管道">💻 Pipeline (管道)</h4>
+<h3 id="-pipeline">💻 Pipeline</h3>
 <pre><code class="lang-csharp">using (var pipe = cli.StartPipe())
 {
     pipe.IncrBy(&quot;key1&quot;, 10);
@@ -251,26 +258,8 @@ cli.Eval(&quot;return redis.call('set',KEYS[1],'bar')&quot;,
     object[] ret = pipe.EndPipe();
     Console.WriteLine(ret[0] + &quot;, &quot; + ret[2]);
 }
-
-// or Async Callback
-
-using (var pipe = cli.StartPipe())
-{
-    var tasks = new List&lt;Task&gt;();
-    long t0 = 0;
-    task.Add(pipe.IncrByAsync(&quot;key1&quot;, 10).ContinueWith(t =&gt; t0 = t.Result)); //callback
-
-    pipe.SetAsync(&quot;key2&quot;, Null);
-
-    string t2 = null;
-    task.Add(pipe.GetAsync(&quot;key1&quot;).ContinueWith(t =&gt; t2 = t.Result)); //callback
-
-    pipe.EndPipe();
-    Task.WaitAll(tasks.ToArray()); //wait all callback
-    Console.WriteLine(t0 + &quot;, &quot; + t2);
-}
 </code></pre>
-<h4 id="-transaction-事务">📰 Transaction (事务)</h4>
+<h3 id="-transaction">📰 Transaction</h3>
 <pre><code class="lang-csharp">using (var tran = cli.Multi())
 {
     tran.IncrBy(&quot;key1&quot;, 10);
@@ -280,33 +269,28 @@ using (var pipe = cli.StartPipe())
     object[] ret = tran.Exec();
     Console.WriteLine(ret[0] + &quot;, &quot; + ret[2]);
 }
-
-// or Async Callback
-
-using (var tran = cli.Multi())
-{
-    var tasks = new List&lt;Task&gt;();
-    long t0 = 0;
-    task.Add(tran.IncrByAsync(&quot;key1&quot;, 10).ContinueWith(t =&gt; t0 = t.Result)); //callback
-
-    tran.SetAsync(&quot;key2&quot;, Null);
-
-    string t2 = null;
-    task.Add(tran.GetAsync(&quot;key1&quot;).ContinueWith(t =&gt; t2 = t.Result)); //callback
-
-    tran.Exec();
-    Task.WaitAll(tasks.ToArray()); //wait all callback
-    Console.WriteLine(t0 + &quot;, &quot; + t2);
-}
 </code></pre>
-<h4 id="-getdatabase-切库">📯 GetDatabase (切库)</h4>
+<h3 id="-getdatabase-switch-database">📯 GetDatabase: switch database</h3>
 <pre><code class="lang-csharp">using (var db = cli.GetDatabase(10))
 {
     db.Set(&quot;key1&quot;, 10);
     var val1 = db.Get(&quot;key1&quot;);
 }
 </code></pre>
-<h4 id="-donation-捐赠">💕 Donation (捐赠)</h4>
+<h3 id="-scan">🔍 Scan</h3>
+<blockquote>
+<p>Support cluster mode</p>
+</blockquote>
+<pre><code class="lang-csharp">foreach (var keys in cli.Scan(&quot;*&quot;, 10, null))
+{
+    Console.WriteLine(string.Join(&quot;, &quot;, keys));
+}
+</code></pre>
+<h2 id="-contributors">👯 Contributors</h2>
+<a href="https://github.com/2881099/FreeRedis/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=2881099/FreeRedis">
+</a>
+<h2 id="-donation">💕 Donation</h2>
 <blockquote>
 <p>Thank you for your donation</p>
 </blockquote>
@@ -316,6 +300,8 @@ using (var tran = cli.Multi())
 <li><p><a href="https://www.cnblogs.com/FreeSql/gallery/image/338859.html">WeChat</a></p>
 </li>
 </ul>
+<h2 id="-license">🗄 License</h2>
+<p><a href="LICENSE">MIT</a></p>
 </article>
           </div>
           
@@ -324,7 +310,7 @@ using (var tran = cli.Multi())
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WeihanLi/FreeRedis/blob/master/readme.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WeihanLi/FreeRedis/blob/master/README.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
