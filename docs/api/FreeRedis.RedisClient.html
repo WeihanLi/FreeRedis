@@ -10,13 +10,13 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class RedisClient
    ">
-    <meta name="generator" content="docfx 2.58.2.0">
+    <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
     <link rel="stylesheet" href="../../styles/main.css">
-    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
     
@@ -83,9 +83,10 @@
       <div class="level2"><a class="xref" href="FreeRedis.RedisClient.PipelineHook.html">RedisClient.PipelineHook</a></div>
       <div class="level2"><a class="xref" href="FreeRedis.RedisClient.TransactionHook.html">RedisClient.TransactionHook</a></div>
   </div>
-  <div classs="implements">
+  <div class="implements">
     <h5>Implements</h5>
     <div><span class="xref">System.IDisposable</span></div>
+    <div><a class="xref" href="FreeRedis.IRedisClient.html">IRedisClient</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -115,7 +116,7 @@
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
   <h5 id="FreeRedis_RedisClient_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class RedisClient : IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class RedisClient : IDisposable, IRedisClient</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -193,13 +194,13 @@
   
   
   <a id="FreeRedis_RedisClient__ctor_" data-uid="FreeRedis.RedisClient.#ctor*"></a>
-  <h4 id="FreeRedis_RedisClient__ctor_FreeRedis_ConnectionStringBuilder___" data-uid="FreeRedis.RedisClient.#ctor(FreeRedis.ConnectionStringBuilder[])">RedisClient(ConnectionStringBuilder[])</h4>
+  <h4 id="FreeRedis_RedisClient__ctor_FreeRedis_ConnectionStringBuilder___System_Collections_Generic_Dictionary_System_String_System_String__" data-uid="FreeRedis.RedisClient.#ctor(FreeRedis.ConnectionStringBuilder[],System.Collections.Generic.Dictionary{System.String,System.String})">RedisClient(ConnectionStringBuilder[], Dictionary&lt;String, String&gt;)</h4>
   <div class="markdown level1 summary"><p>Cluster RedisClient</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RedisClient(ConnectionStringBuilder[] clusterConnectionStrings)</code></pre>
+    <pre><code class="lang-csharp hljs">public RedisClient(ConnectionStringBuilder[] clusterConnectionStrings, Dictionary&lt;string, string&gt; hostMappings = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -214,6 +215,11 @@
       <tr>
         <td><a class="xref" href="FreeRedis.ConnectionStringBuilder.html">ConnectionStringBuilder</a>[]</td>
         <td><span class="parametername">clusterConnectionStrings</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">hostMappings</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -254,13 +260,13 @@
   
   
   <a id="FreeRedis_RedisClient__ctor_" data-uid="FreeRedis.RedisClient.#ctor*"></a>
-  <h4 id="FreeRedis_RedisClient__ctor_FreeRedis_RedisClient_System_String_System_Boolean_System_TimeSpan_System_TimeSpan_System_TimeSpan_System_Action_FreeRedis_RedisClient__" data-uid="FreeRedis.RedisClient.#ctor(FreeRedis.RedisClient,System.String,System.Boolean,System.TimeSpan,System.TimeSpan,System.TimeSpan,System.Action{FreeRedis.RedisClient})">RedisClient(RedisClient, String, Boolean, TimeSpan, TimeSpan, TimeSpan, Action&lt;RedisClient&gt;)</h4>
+  <h4 id="FreeRedis_RedisClient__ctor_FreeRedis_RedisClient_System_String_System_Boolean_RemoteCertificateValidationCallback_LocalCertificateSelectionCallback_System_TimeSpan_System_TimeSpan_System_TimeSpan_System_Action_FreeRedis_RedisClient__System_Action_FreeRedis_RedisClient__" data-uid="FreeRedis.RedisClient.#ctor(FreeRedis.RedisClient,System.String,System.Boolean,RemoteCertificateValidationCallback,LocalCertificateSelectionCallback,System.TimeSpan,System.TimeSpan,System.TimeSpan,System.Action{FreeRedis.RedisClient},System.Action{FreeRedis.RedisClient})">RedisClient(RedisClient, String, Boolean, RemoteCertificateValidationCallback, LocalCertificateSelectionCallback, TimeSpan, TimeSpan, TimeSpan, Action&lt;RedisClient&gt;, Action&lt;RedisClient&gt;)</h4>
   <div class="markdown level1 summary"><p>Single inside RedisClient</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected RedisClient(RedisClient topOwner, string host, bool ssl, TimeSpan connectTimeout, TimeSpan receiveTimeout, TimeSpan sendTimeout, Action&lt;RedisClient&gt; connected)</code></pre>
+    <pre><code class="lang-csharp hljs">protected RedisClient(RedisClient topOwner, string host, bool ssl, RemoteCertificateValidationCallback certificateValidation, LocalCertificateSelectionCallback certificateSelection, TimeSpan connectTimeout, TimeSpan receiveTimeout, TimeSpan sendTimeout, Action&lt;RedisClient&gt; connected, Action&lt;RedisClient&gt; disconnected)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -288,6 +294,16 @@
         <td></td>
       </tr>
       <tr>
+        <td><span class="xref">RemoteCertificateValidationCallback</span></td>
+        <td><span class="parametername">certificateValidation</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">LocalCertificateSelectionCallback</span></td>
+        <td><span class="parametername">certificateSelection</span></td>
+        <td></td>
+      </tr>
+      <tr>
         <td><span class="xref">System.TimeSpan</span></td>
         <td><span class="parametername">connectTimeout</span></td>
         <td></td>
@@ -305,6 +321,11 @@
       <tr>
         <td><span class="xref">System.Action</span>&lt;<a class="xref" href="FreeRedis.RedisClient.html">RedisClient</a>&gt;</td>
         <td><span class="parametername">connected</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<a class="xref" href="FreeRedis.RedisClient.html">RedisClient</a>&gt;</td>
+        <td><span class="parametername">disconnected</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -338,6 +359,30 @@
   </table>
   <h3 id="fields">Fields
   </h3>
+  
+  
+  <h4 id="FreeRedis_RedisClient_ClusterCRC16" data-uid="FreeRedis.RedisClient.ClusterCRC16">ClusterCRC16</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FreeRedisClusterCRC16 ClusterCRC16</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FreeRedis.FreeRedisClusterCRC16.html">FreeRedisClusterCRC16</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="FreeRedis_RedisClient_Deserialize" data-uid="FreeRedis.RedisClient.Deserialize">Deserialize</h4>
@@ -433,6 +478,31 @@
     <tbody>
       <tr>
         <td><a class="xref" href="FreeRedis.RedisClient.BaseAdapter.html">RedisClient.BaseAdapter</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_ConnectionString_" data-uid="FreeRedis.RedisClient.ConnectionString*"></a>
+  <h4 id="FreeRedis_RedisClient_ConnectionString" data-uid="FreeRedis.RedisClient.ConnectionString">ConnectionString</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ConnectionStringBuilder ConnectionString { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FreeRedis.ConnectionStringBuilder.html">ConnectionStringBuilder</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -1555,6 +1625,53 @@ Available since 2.6.0.</p>
   </table>
   
   
+  <a id="FreeRedis_RedisClient_BitField_" data-uid="FreeRedis.RedisClient.BitField*"></a>
+  <h4 id="FreeRedis_RedisClient_BitField_System_String_FreeRedis_BitFieldAction___" data-uid="FreeRedis.RedisClient.BitField(System.String,FreeRedis.BitFieldAction[])">BitField(String, BitFieldAction[])</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long[] BitField(string key, params BitFieldAction[] actions)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FreeRedis.BitFieldAction.html">BitFieldAction</a>[]</td>
+        <td><span class="parametername">actions</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="FreeRedis_RedisClient_BitOp_" data-uid="FreeRedis.RedisClient.BitOp*"></a>
   <h4 id="FreeRedis_RedisClient_BitOp_FreeRedis_BitOpOperation_System_String_System_String___" data-uid="FreeRedis.RedisClient.BitOp(FreeRedis.BitOpOperation,System.String,System.String[])">BitOp(BitOpOperation, String, String[])</h4>
   <div class="markdown level1 summary"><p>BITOP command (A Synchronized Version) <br><br>
@@ -2483,7 +2600,7 @@ Available since 2.8.7.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected TValue Call&lt;TValue&gt;(CommandPacket cmd, Func&lt;RedisResult, TValue&gt; parse)</code></pre>
+    <pre><code class="lang-csharp hljs">public TValue Call&lt;TValue&gt;(CommandPacket cmd, Func&lt;RedisResult, TValue&gt; parse)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4368,6 +4485,50 @@ Available since 2.6.0.</p>
   </table>
   
   
+  <a id="FreeRedis_RedisClient_DelayQueue_" data-uid="FreeRedis.RedisClient.DelayQueue*"></a>
+  <h4 id="FreeRedis_RedisClient_DelayQueue_System_String_" data-uid="FreeRedis.RedisClient.DelayQueue(System.String)">DelayQueue(String)</h4>
+  <div class="markdown level1 summary"><p>延时队列</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DelayQueue DelayQueue(string queueKey)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">queueKey</span></td>
+        <td><p>延时队列Key</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FreeRedis.DelayQueue.html">DelayQueue</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="FreeRedis_RedisClient_Dispose_" data-uid="FreeRedis.RedisClient.Dispose*"></a>
   <h4 id="FreeRedis_RedisClient_Dispose" data-uid="FreeRedis.RedisClient.Dispose">Dispose()</h4>
   <div class="markdown level1 summary"></div>
@@ -4852,16 +5013,6 @@ Available since 1.2.0.</p>
       </tr>
     </tbody>
   </table>
-  
-  
-  <a id="FreeRedis_RedisClient_Finalize_" data-uid="FreeRedis.RedisClient.Finalize*"></a>
-  <h4 id="FreeRedis_RedisClient_Finalize" data-uid="FreeRedis.RedisClient.Finalize">Finalize()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void Finalize()</code></pre>
-  </div>
   
   
   <a id="FreeRedis_RedisClient_FlushAll_" data-uid="FreeRedis.RedisClient.FlushAll*"></a>
@@ -6786,7 +6937,7 @@ Available since 1.0.0.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ScanResult&lt;string&gt; HScan(string key, long cursor, string pattern, long count)</code></pre>
+    <pre><code class="lang-csharp hljs">public ScanResult&lt;KeyValuePair&lt;string, string&gt;&gt; HScan(string key, long cursor, string pattern, long count)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -6830,7 +6981,198 @@ Available since 1.0.0.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FreeRedis.ScanResult-1.html">ScanResult</a>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><a class="xref" href="FreeRedis.ScanResult-1.html">ScanResult</a>&lt;<span class="xref">System.Collections.Generic.KeyValuePair</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_HScan_" data-uid="FreeRedis.RedisClient.HScan*"></a>
+  <h4 id="FreeRedis_RedisClient_HScan_System_String_System_String_System_Int64_" data-uid="FreeRedis.RedisClient.HScan(System.String,System.String,System.Int64)">HScan(String, String, Int64)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;KeyValuePair&lt;string, string&gt;[]&gt; HScan(string key, string pattern, long count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pattern</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.Collections.Generic.KeyValuePair</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_HScan_" data-uid="FreeRedis.RedisClient.HScan*"></a>
+  <h4 id="FreeRedis_RedisClient_HScan__1_System_String_System_Int64_System_String_System_Int64_" data-uid="FreeRedis.RedisClient.HScan``1(System.String,System.Int64,System.String,System.Int64)">HScan&lt;T&gt;(String, Int64, String, Int64)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScanResult&lt;KeyValuePair&lt;string, T&gt;&gt; HScan&lt;T&gt;(string key, long cursor, string pattern, long count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">cursor</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pattern</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FreeRedis.ScanResult-1.html">ScanResult</a>&lt;<span class="xref">System.Collections.Generic.KeyValuePair</span>&lt;<span class="xref">System.String</span>, T&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_HScan_" data-uid="FreeRedis.RedisClient.HScan*"></a>
+  <h4 id="FreeRedis_RedisClient_HScan__1_System_String_System_String_System_Int64_" data-uid="FreeRedis.RedisClient.HScan``1(System.String,System.String,System.Int64)">HScan&lt;T&gt;(String, String, Int64)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;KeyValuePair&lt;string, T&gt;[]&gt; HScan&lt;T&gt;(string key, string pattern, long count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pattern</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.Collections.Generic.KeyValuePair</span>&lt;<span class="xref">System.String</span>, T&gt;[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -7411,6 +7753,1195 @@ Available since 2.6.0.</li>
   </table>
   
   
+  <a id="FreeRedis_RedisClient_JsonArrAppend_" data-uid="FreeRedis.RedisClient.JsonArrAppend*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonArrAppend_System_String_System_String_System_Object___" data-uid="FreeRedis.RedisClient.JsonArrAppend(System.String,System.String,System.Object[])">JsonArrAppend(String, String, Object[])</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long[] JsonArrAppend(string key, string path, params object[] values)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonArrIndex_" data-uid="FreeRedis.RedisClient.JsonArrIndex*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonArrIndex__1_System_String_System_String___0_" data-uid="FreeRedis.RedisClient.JsonArrIndex``1(System.String,System.String,``0)">JsonArrIndex&lt;T&gt;(String, String, T)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long[] JsonArrIndex&lt;T&gt;(string key, string path, T value)
+    where T : struct</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonArrInsert_" data-uid="FreeRedis.RedisClient.JsonArrInsert*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonArrInsert_System_String_System_String_System_Int64_System_Object___" data-uid="FreeRedis.RedisClient.JsonArrInsert(System.String,System.String,System.Int64,System.Object[])">JsonArrInsert(String, String, Int64, Object[])</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long[] JsonArrInsert(string key, string path, long index = 0L, params object[] values)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">index</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonArrLen_" data-uid="FreeRedis.RedisClient.JsonArrLen*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonArrLen_System_String_System_String_" data-uid="FreeRedis.RedisClient.JsonArrLen(System.String,System.String)">JsonArrLen(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long[] JsonArrLen(string key, string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonArrPop_" data-uid="FreeRedis.RedisClient.JsonArrPop*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonArrPop_System_String_System_String_System_Int32_" data-uid="FreeRedis.RedisClient.JsonArrPop(System.String,System.String,System.Int32)">JsonArrPop(String, String, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object[] JsonArrPop(string key, string path, int index = -1)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonArrTrim_" data-uid="FreeRedis.RedisClient.JsonArrTrim*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonArrTrim_System_String_System_String_System_Int32_System_Int32_" data-uid="FreeRedis.RedisClient.JsonArrTrim(System.String,System.String,System.Int32,System.Int32)">JsonArrTrim(String, String, Int32, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long[] JsonArrTrim(string key, string path, int start, int stop)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">start</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">stop</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonClear_" data-uid="FreeRedis.RedisClient.JsonClear*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonClear_System_String_System_String_" data-uid="FreeRedis.RedisClient.JsonClear(System.String,System.String)">JsonClear(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long JsonClear(string key, string path = &quot;$&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonDebugMemory_" data-uid="FreeRedis.RedisClient.JsonDebugMemory*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonDebugMemory_System_String_System_String_" data-uid="FreeRedis.RedisClient.JsonDebugMemory(System.String,System.String)">JsonDebugMemory(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long[] JsonDebugMemory(string key, string path = &quot;$&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonDel_" data-uid="FreeRedis.RedisClient.JsonDel*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonDel_System_String_System_String_" data-uid="FreeRedis.RedisClient.JsonDel(System.String,System.String)">JsonDel(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long JsonDel(string key, string path = &quot;$&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonForget_" data-uid="FreeRedis.RedisClient.JsonForget*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonForget_System_String_System_String_" data-uid="FreeRedis.RedisClient.JsonForget(System.String,System.String)">JsonForget(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long JsonForget(string key, string path = &quot;$&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonGet_" data-uid="FreeRedis.RedisClient.JsonGet*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonGet_System_String_System_String_System_String_System_String_System_String___" data-uid="FreeRedis.RedisClient.JsonGet(System.String,System.String,System.String,System.String,System.String[])">JsonGet(String, String, String, String, String[])</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string JsonGet(string key, string indent = null, string newline = null, string space = null, params string[] paths)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">indent</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">newline</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">space</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">paths</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonMerge_" data-uid="FreeRedis.RedisClient.JsonMerge*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonMerge_System_String_System_String_System_String_" data-uid="FreeRedis.RedisClient.JsonMerge(System.String,System.String,System.String)">JsonMerge(String, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void JsonMerge(string key, string path, string value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonMGet_" data-uid="FreeRedis.RedisClient.JsonMGet*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonMGet_System_String___System_String_" data-uid="FreeRedis.RedisClient.JsonMGet(System.String[],System.String)">JsonMGet(String[], String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string[] JsonMGet(string[] keys, string path = &quot;$&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">keys</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonMSet_" data-uid="FreeRedis.RedisClient.JsonMSet*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonMSet_System_String___System_String___System_String___" data-uid="FreeRedis.RedisClient.JsonMSet(System.String[],System.String[],System.String[])">JsonMSet(String[], String[], String[])</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void JsonMSet(string[] keys, string[] values, string[] paths)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">keys</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">paths</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonNumIncrBy_" data-uid="FreeRedis.RedisClient.JsonNumIncrBy*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonNumIncrBy_System_String_System_String_System_Double_" data-uid="FreeRedis.RedisClient.JsonNumIncrBy(System.String,System.String,System.Double)">JsonNumIncrBy(String, String, Double)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string JsonNumIncrBy(string key, string path, double value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonNumMultBy_" data-uid="FreeRedis.RedisClient.JsonNumMultBy*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonNumMultBy_System_String_System_String_System_Double_" data-uid="FreeRedis.RedisClient.JsonNumMultBy(System.String,System.String,System.Double)">JsonNumMultBy(String, String, Double)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string JsonNumMultBy(string key, string path, double value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonObjKeys_" data-uid="FreeRedis.RedisClient.JsonObjKeys*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonObjKeys_System_String_System_String_" data-uid="FreeRedis.RedisClient.JsonObjKeys(System.String,System.String)">JsonObjKeys(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string[][] JsonObjKeys(string key, string path = &quot;$&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[][]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonObjLen_" data-uid="FreeRedis.RedisClient.JsonObjLen*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonObjLen_System_String_System_String_" data-uid="FreeRedis.RedisClient.JsonObjLen(System.String,System.String)">JsonObjLen(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long[] JsonObjLen(string key, string path = &quot;$&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonResp_" data-uid="FreeRedis.RedisClient.JsonResp*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonResp_System_String_System_String_" data-uid="FreeRedis.RedisClient.JsonResp(System.String,System.String)">JsonResp(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object[][] JsonResp(string key, string path = &quot;$&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span>[][]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonSet_" data-uid="FreeRedis.RedisClient.JsonSet*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonSet_System_String_System_String_System_String_System_Boolean_System_Boolean_" data-uid="FreeRedis.RedisClient.JsonSet(System.String,System.String,System.String,System.Boolean,System.Boolean)">JsonSet(String, String, String, Boolean, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void JsonSet(string key, string value, string path = &quot;$&quot;, bool nx = false, bool xx = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">nx</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">xx</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonStrAppend_" data-uid="FreeRedis.RedisClient.JsonStrAppend*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonStrAppend_System_String_System_String_System_String_" data-uid="FreeRedis.RedisClient.JsonStrAppend(System.String,System.String,System.String)">JsonStrAppend(String, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long[] JsonStrAppend(string key, string value, string path = &quot;$&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonStrLen_" data-uid="FreeRedis.RedisClient.JsonStrLen*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonStrLen_System_String_System_String_" data-uid="FreeRedis.RedisClient.JsonStrLen(System.String,System.String)">JsonStrLen(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long[] JsonStrLen(string key, string path = &quot;$&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonToggle_" data-uid="FreeRedis.RedisClient.JsonToggle*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonToggle_System_String_System_String_" data-uid="FreeRedis.RedisClient.JsonToggle(System.String,System.String)">JsonToggle(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool[] JsonToggle(string key, string path = &quot;$&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_JsonType_" data-uid="FreeRedis.RedisClient.JsonType*"></a>
+  <h4 id="FreeRedis_RedisClient_JsonType_System_String_System_String_" data-uid="FreeRedis.RedisClient.JsonType(System.String,System.String)">JsonType(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string[] JsonType(string key, string path = &quot;$&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="FreeRedis_RedisClient_Keys_" data-uid="FreeRedis.RedisClient.Keys*"></a>
   <h4 id="FreeRedis_RedisClient_Keys_System_String_" data-uid="FreeRedis.RedisClient.Keys(System.String)">Keys(String)</h4>
   <div class="markdown level1 summary"><p>KEYS command (A Synchronized Version) <br><br>
@@ -7777,6 +9308,80 @@ Available since 1.0.0.</p>
   </table>
   
   
+  <a id="FreeRedis_RedisClient_Lock_" data-uid="FreeRedis.RedisClient.Lock*"></a>
+  <h4 id="FreeRedis_RedisClient_Lock_System_String_System_Int32_System_Int32_System_Int32_System_Boolean_System_Threading_CancellationToken_" data-uid="FreeRedis.RedisClient.Lock(System.String,System.Int32,System.Int32,System.Int32,System.Boolean,System.Threading.CancellationToken)">Lock(String, Int32, Int32, Int32, Boolean, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>开启分布式锁，若超时返回null</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RedisClient.LockController Lock(string name, int timeoutSeconds, int refrshTimeoutSeconds, int waitTimeoutSeconds, bool autoDelay = true, CancellationToken token = default(CancellationToken))</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>锁名称</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">timeoutSeconds</span></td>
+        <td><p>独占锁过期时间</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">refrshTimeoutSeconds</span></td>
+        <td><p>每隔多久自动延长一次锁，时间要比 timeoutSeconds 小，否则没有意义</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">waitTimeoutSeconds</span></td>
+        <td><p>等待锁释放超时时间，如果这个时间内获取不到锁，则 LockController 为 null</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">autoDelay</span></td>
+        <td><p>自动延长锁超时时间，看门狗线程的超时时间为timeoutSeconds/2 ， 在看门狗线程超时时间时自动延长锁的时间为timeoutSeconds。除非程序意外退出，否则永不超时。</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">token</span></td>
+        <td><p>CancellationToken 自动取消锁</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FreeRedis.RedisClient.LockController.html">RedisClient.LockController</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="FreeRedis_RedisClient_LogCall_" data-uid="FreeRedis.RedisClient.LogCall*"></a>
   <h4 id="FreeRedis_RedisClient_LogCall__1_FreeRedis_CommandPacket_System_Func___0__" data-uid="FreeRedis.RedisClient.LogCall``1(FreeRedis.CommandPacket,System.Func{``0})">LogCall&lt;T&gt;(CommandPacket, Func&lt;T&gt;)</h4>
   <div class="markdown level1 summary"></div>
@@ -7803,6 +9408,78 @@ Available since 1.0.0.</p>
       <tr>
         <td><span class="xref">System.Func</span>&lt;T&gt;</td>
         <td><span class="parametername">func</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_LogCallCtrl_" data-uid="FreeRedis.RedisClient.LogCallCtrl*"></a>
+  <h4 id="FreeRedis_RedisClient_LogCallCtrl__1_FreeRedis_CommandPacket_System_Func___0__System_Boolean_System_Boolean_" data-uid="FreeRedis.RedisClient.LogCallCtrl``1(FreeRedis.CommandPacket,System.Func{``0},System.Boolean,System.Boolean)">LogCallCtrl&lt;T&gt;(CommandPacket, Func&lt;T&gt;, Boolean, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual T LogCallCtrl&lt;T&gt;(CommandPacket cmd, Func&lt;T&gt; func, bool aopBefore, bool aopAfter)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FreeRedis.CommandPacket.html">CommandPacket</a></td>
+        <td><span class="parametername">cmd</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T&gt;</td>
+        <td><span class="parametername">func</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">aopBefore</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">aopAfter</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -9871,6 +11548,53 @@ Available since 2.6.0.</li>
   
   
   <a id="FreeRedis_RedisClient_Publish_" data-uid="FreeRedis.RedisClient.Publish*"></a>
+  <h4 id="FreeRedis_RedisClient_Publish_System_String_System_Byte___" data-uid="FreeRedis.RedisClient.Publish(System.String,System.Byte[])">Publish(String, Byte[])</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long Publish(string channel, byte[] message)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">channel</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">message</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_Publish_" data-uid="FreeRedis.RedisClient.Publish*"></a>
   <h4 id="FreeRedis_RedisClient_Publish_System_String_System_String_" data-uid="FreeRedis.RedisClient.Publish(System.String,System.String)">Publish(String, String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -9923,7 +11647,7 @@ Available since 2.6.0.</li>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string[] PubSubChannels(string pattern)</code></pre>
+    <pre><code class="lang-csharp hljs">public string[] PubSubChannels(string pattern = &quot;*&quot;)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -9960,30 +11684,13 @@ Available since 2.6.0.</li>
   
   
   <a id="FreeRedis_RedisClient_PubSubNumPat_" data-uid="FreeRedis.RedisClient.PubSubNumPat*"></a>
-  <h4 id="FreeRedis_RedisClient_PubSubNumPat_System_String_" data-uid="FreeRedis.RedisClient.PubSubNumPat(System.String)">PubSubNumPat(String)</h4>
+  <h4 id="FreeRedis_RedisClient_PubSubNumPat" data-uid="FreeRedis.RedisClient.PubSubNumPat">PubSubNumPat()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public long PubSubNumPat(string message)</code></pre>
+    <pre><code class="lang-csharp hljs">public long PubSubNumPat()</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">message</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -12644,12 +14351,12 @@ Null reply: a Null Bulk Reply is returned if the SET operation was not performed
   
   
   <a id="FreeRedis_RedisClient_SMIsMember_" data-uid="FreeRedis.RedisClient.SMIsMember*"></a>
-  <h4 id="FreeRedis_RedisClient_SMIsMember__1_System_String_System_Object___" data-uid="FreeRedis.RedisClient.SMIsMember``1(System.String,System.Object[])">SMIsMember&lt;T&gt;(String, Object[])</h4>
+  <h4 id="FreeRedis_RedisClient_SMIsMember_System_String_System_Object___" data-uid="FreeRedis.RedisClient.SMIsMember(System.String,System.Object[])">SMIsMember(String, Object[])</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool[] SMIsMember&lt;T&gt;(string key, params object[] members)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool[] SMIsMember(string key, params object[] members)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -12684,21 +14391,6 @@ Null reply: a Null Bulk Reply is returned if the SET operation was not performed
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span>[]</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -13474,6 +15166,197 @@ Available since 1.0.0.</p>
   </table>
   
   
+  <a id="FreeRedis_RedisClient_SScan_" data-uid="FreeRedis.RedisClient.SScan*"></a>
+  <h4 id="FreeRedis_RedisClient_SScan_System_String_System_String_System_Int64_" data-uid="FreeRedis.RedisClient.SScan(System.String,System.String,System.Int64)">SScan(String, String, Int64)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;string[]&gt; SScan(string key, string pattern, long count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pattern</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.String</span>[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_SScan_" data-uid="FreeRedis.RedisClient.SScan*"></a>
+  <h4 id="FreeRedis_RedisClient_SScan__1_System_String_System_Int64_System_String_System_Int64_" data-uid="FreeRedis.RedisClient.SScan``1(System.String,System.Int64,System.String,System.Int64)">SScan&lt;T&gt;(String, Int64, String, Int64)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScanResult&lt;T&gt; SScan&lt;T&gt;(string key, long cursor, string pattern, long count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">cursor</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pattern</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FreeRedis.ScanResult-1.html">ScanResult</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_SScan_" data-uid="FreeRedis.RedisClient.SScan*"></a>
+  <h4 id="FreeRedis_RedisClient_SScan__1_System_String_System_String_System_Int64_" data-uid="FreeRedis.RedisClient.SScan``1(System.String,System.String,System.Int64)">SScan&lt;T&gt;(String, String, Int64)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;T[]&gt; SScan&lt;T&gt;(string key, string pattern, long count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pattern</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;T[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="FreeRedis_RedisClient_StartPipe_" data-uid="FreeRedis.RedisClient.StartPipe*"></a>
   <h4 id="FreeRedis_RedisClient_StartPipe" data-uid="FreeRedis.RedisClient.StartPipe">StartPipe()</h4>
   <div class="markdown level1 summary"></div>
@@ -13639,6 +15522,209 @@ Available since 2.2.0.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.IDisposable</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_SubscribeList_" data-uid="FreeRedis.RedisClient.SubscribeList*"></a>
+  <h4 id="FreeRedis_RedisClient_SubscribeList_System_String_System_Action_System_String__" data-uid="FreeRedis.RedisClient.SubscribeList(System.String,System.Action{System.String})">SubscribeList(String, Action&lt;String&gt;)</h4>
+  <div class="markdown level1 summary"><p>使用lpush + blpop订阅端（多端争抢模式），只有一端收到消息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SubscribeListObject SubscribeList(string listKey, Action&lt;string&gt; onMessage)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">listKey</span></td>
+        <td><p>list key（不含prefix前辍）</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">onMessage</span></td>
+        <td><p>接收消息委托</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FreeRedis.Internal.SubscribeListObject.html">SubscribeListObject</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_SubscribeList_" data-uid="FreeRedis.RedisClient.SubscribeList*"></a>
+  <h4 id="FreeRedis_RedisClient_SubscribeList_System_String___System_Action_System_String_System_String__" data-uid="FreeRedis.RedisClient.SubscribeList(System.String[],System.Action{System.String,System.String})">SubscribeList(String[], Action&lt;String, String&gt;)</h4>
+  <div class="markdown level1 summary"><p>使用lpush + blpop订阅端（多端争抢模式），只有一端收到消息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SubscribeListObject SubscribeList(string[] listKeys, Action&lt;string, string&gt; onMessage)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">listKeys</span></td>
+        <td><p>支持多个 key（不含prefix前辍）</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">onMessage</span></td>
+        <td><p>接收消息委托，参数1：key；参数2：消息体</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FreeRedis.Internal.SubscribeListObject.html">SubscribeListObject</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_SubscribeListBroadcast_" data-uid="FreeRedis.RedisClient.SubscribeListBroadcast*"></a>
+  <h4 id="FreeRedis_RedisClient_SubscribeListBroadcast_System_String_System_String_System_Action_System_String__" data-uid="FreeRedis.RedisClient.SubscribeListBroadcast(System.String,System.String,System.Action{System.String})">SubscribeListBroadcast(String, String, Action&lt;String&gt;)</h4>
+  <div class="markdown level1 summary"><p>使用lpush + blpop订阅端（多端非争抢模式），都可以收到消息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SubscribeListBroadcastObject SubscribeListBroadcast(string listKey, string clientId, Action&lt;string&gt; onMessage)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">listKey</span></td>
+        <td><p>list key（不含prefix前辍）</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">clientId</span></td>
+        <td><p>订阅端标识，若重复则争抢，若唯一必然收到消息</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">onMessage</span></td>
+        <td><p>接收消息委托</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FreeRedis.Internal.SubscribeListBroadcastObject.html">SubscribeListBroadcastObject</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_SubscribeStream_" data-uid="FreeRedis.RedisClient.SubscribeStream*"></a>
+  <h4 id="FreeRedis_RedisClient_SubscribeStream_System_String_System_Action_System_Collections_Generic_Dictionary_System_String_System_String___" data-uid="FreeRedis.RedisClient.SubscribeStream(System.String,System.Action{System.Collections.Generic.Dictionary{System.String,System.String}})">SubscribeStream(String, Action&lt;Dictionary&lt;String, String&gt;&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SubscribeStreamObject SubscribeStream(string streamKey, Action&lt;Dictionary&lt;string, string&gt;&gt; onMessage)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">streamKey</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;&gt;</td>
+        <td><span class="parametername">onMessage</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FreeRedis.Internal.SubscribeStreamObject.html">SubscribeStreamObject</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -14872,6 +16958,73 @@ Available since 3.0.0.</p>
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_XAutoClaim_" data-uid="FreeRedis.RedisClient.XAutoClaim*"></a>
+  <h4 id="FreeRedis_RedisClient_XAutoClaim_System_String_System_String_System_String_System_Int64_System_String_System_Int64_" data-uid="FreeRedis.RedisClient.XAutoClaim(System.String,System.String,System.String,System.Int64,System.String,System.Int64)">XAutoClaim(String, String, String, Int64, String, Int64)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StreamsXAutoClaimResult XAutoClaim(string key, string group, string consumer, long minIdleTime, string start, long count = 0L)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">group</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">consumer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">minIdleTime</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">start</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FreeRedis.StreamsXAutoClaimResult.html">StreamsXAutoClaimResult</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -17646,7 +19799,7 @@ Available since 3.0.0.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public long ZRank(string key, string member)</code></pre>
+    <pre><code class="lang-csharp hljs">public long? ZRank(string key, string member)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -17680,7 +19833,7 @@ Available since 3.0.0.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int64</span></td>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int64</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -18465,13 +20618,123 @@ Available since 3.0.0.</p>
   </table>
   
   
+  <a id="FreeRedis_RedisClient_ZScan_" data-uid="FreeRedis.RedisClient.ZScan*"></a>
+  <h4 id="FreeRedis_RedisClient_ZScan_System_String_System_Int64_System_String_System_Int64_" data-uid="FreeRedis.RedisClient.ZScan(System.String,System.Int64,System.String,System.Int64)">ZScan(String, Int64, String, Int64)</h4>
+  <div class="markdown level1 summary"><p>ZSCAN key cursor [MATCH pattern] [COUNT count]</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScanResult&lt;ZMember&gt; ZScan(string key, long cursor, string pattern, long count = 0L)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">cursor</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pattern</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FreeRedis.ScanResult-1.html">ScanResult</a>&lt;<a class="xref" href="FreeRedis.ZMember.html">ZMember</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FreeRedis_RedisClient_ZScan_" data-uid="FreeRedis.RedisClient.ZScan*"></a>
+  <h4 id="FreeRedis_RedisClient_ZScan_System_String_System_String_System_Int64_" data-uid="FreeRedis.RedisClient.ZScan(System.String,System.String,System.Int64)">ZScan(String, String, Int64)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;ZMember[]&gt; ZScan(string key, string pattern, long count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pattern</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="FreeRedis.ZMember.html">ZMember</a>[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="FreeRedis_RedisClient_ZScore_" data-uid="FreeRedis.RedisClient.ZScore*"></a>
   <h4 id="FreeRedis_RedisClient_ZScore_System_String_System_String_" data-uid="FreeRedis.RedisClient.ZScore(System.String,System.String)">ZScore(String, String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public decimal ZScore(string key, string member)</code></pre>
+    <pre><code class="lang-csharp hljs">public decimal? ZScore(string key, string member)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -18505,7 +20768,7 @@ Available since 3.0.0.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Decimal</span></td>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Decimal</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -18595,6 +20858,30 @@ Available since 3.0.0.</p>
   </table>
   
   
+  <h4 id="FreeRedis_RedisClient_Disconnected" data-uid="FreeRedis.RedisClient.Disconnected">Disconnected</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;DisconnectedEventArgs&gt; Disconnected</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="FreeRedis.DisconnectedEventArgs.html">DisconnectedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <h4 id="FreeRedis_RedisClient_Notice" data-uid="FreeRedis.RedisClient.Notice">Notice</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -18644,6 +20931,9 @@ Available since 3.0.0.</p>
   <h3 id="implements">Implements</h3>
   <div>
       <span class="xref">System.IDisposable</span>
+  </div>
+  <div>
+      <a class="xref" href="FreeRedis.IRedisClient.html">IRedisClient</a>
   </div>
 </article>
           </div>

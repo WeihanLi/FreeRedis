@@ -8,14 +8,14 @@
     <title> &#129412; FreeRedis  </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content=" &#129412; FreeRedis  ">
-    <meta name="generator" content="docfx 2.58.2.0">
+    <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="styles/docfx.vendor.css">
     <link rel="stylesheet" href="styles/docfx.css">
     <link rel="stylesheet" href="styles/main.css">
-    <meta property="docfx:navrel" content="toc.html">
-    <meta property="docfx:tocrel" content="toc.html">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="">
     
     
     
@@ -63,7 +63,7 @@
 <h1 align="center"> 🦄 FreeRedis </h1>
 
 <div align="center">
-<p>基于 .NET 的 Redis 客户端，支持 .NET Core 2.1+、.NET Framework 4.0+ 以及 Xamarin。</p>
+<p>基于 .NET 的 Redis 客户端，支持 .NET Core 2.1+、.NET Framework 4.0+、Xamarin 以及 AOT。</p>
 <p><a href="https://www.nuget.org/packages/FreeRedis"><img src="https://img.shields.io/nuget/v/FreeRedis.svg?style=flat-square" alt="nuget"></a>
 <a href="https://www.nuget.org/stats/packages/FreeRedis?groupby=Version"><img src="https://img.shields.io/nuget/dt/FreeRedis.svg?style=flat-square" alt="stats"></a>
 <a href="https://raw.githubusercontent.com/2881099/FreeRedis/master/LICENSE.txt"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="GitHub license"></a></p>
@@ -186,11 +186,24 @@ string[] vals = cli.MGet(&quot;key1&quot;, &quot;key2&quot;);
 <td style="text-align: right;">&lt;empty&gt;</td>
 <td style="text-align: left;"><code>key</code> 前辍，所有方法都会附带此前辍，cli.Set(prefix + &quot;key&quot;, 111);</td>
 </tr>
+<tr>
+<td style="text-align: left;">exitAutoDisposePool</td>
+<td style="text-align: right;">true</td>
+<td style="text-align: left;">AppDomain.CurrentDomain.ProcessExit/Console.CancelKeyPress 事件自动释放</td>
+</tr>
+<tr>
+<td style="text-align: left;">subscribeReadbytes</td>
+<td style="text-align: right;">false</td>
+<td style="text-align: left;">Subscribe 读取内容为 byte[]</td>
+</tr>
 </tbody>
 </table>
 <blockquote>
 <p>IPv6: [fe80::b164:55b3:4b4f:7ce6%15]:6379</p>
 </blockquote>
+<pre><code class="lang-csharp">//FreeRedis.DistributedCache
+//services.AddSingleton&lt;IDistributedCache&gt;(new FreeRedis.DistributedCache(cli));
+</code></pre>
 <h3 id="-master-slave-读写分离">🎣 Master-Slave (读写分离)</h3>
 <pre><code class="lang-csharp">public static RedisClient cli = new RedisClient(
     &quot;127.0.0.1:6379,password=123,defaultDatabase=13&quot;,
@@ -239,6 +252,27 @@ var value = cli.Get(&quot;key1&quot;);
 void ondata(string channel, string data) =&gt;
     Console.WriteLine($&quot;{channel} -&gt; {data}&quot;);
 </code></pre>
+<p>xadd + xreadgroup:</p>
+<pre><code class="lang-csharp">using (cli.SubscribeStream(&quot;stream_key&quot;, ondata)) //wait .Dispose()
+{
+    Console.ReadKey();
+}
+
+void ondata(Dictionary&lt;string, string&gt; streamValue) =&gt;
+    Console.WriteLine(JsonConvert.SerializeObject(streamValue));
+
+// NoAck xpending
+cli.XPending(&quot;stream_key&quot;, &quot;FreeRedis__group&quot;, &quot;-&quot;, &quot;+&quot;, 10);
+</code></pre>
+<p>lpush + blpop：</p>
+<pre><code class="lang-csharp">using (cli.SubscribeList(&quot;list_key&quot;, ondata)) //wait .Dispose()
+{
+    Console.ReadKey();
+}
+
+void ondata(string listValue) =&gt;
+    Console.WriteLine(listValue);
+</code></pre>
 <h3 id="-scripting-脚本">📃 Scripting (脚本)</h3>
 <pre><code class="lang-csharp">var r1 = cli.Eval(&quot;return {KEYS[1],KEYS[2],ARGV[1],ARGV[2]}&quot;, 
     new[] { &quot;key1&quot;, &quot;key2&quot; }, &quot;first&quot;, &quot;second&quot;) as object[];
@@ -285,6 +319,25 @@ cli.Eval(&quot;return redis.call('set',KEYS[1],'bar')&quot;,
 {
     Console.WriteLine(string.Join(&quot;, &quot;, keys));
 }
+</code></pre>
+<h3 id="delayqueue-延时队列">🍡DelayQueue (延时队列)</h3>
+<pre><code class="lang-c#">var delayQueue = cli.DelayQueue(&quot;TestDelayQueue&quot;);
+
+//添加队列
+delayQueue.Enqueue($&quot;Execute in 5 seconds.&quot;, TimeSpan.FromSeconds(5));
+delayQueue.Enqueue($&quot;Execute in 10 seconds.&quot;, DateTime.Now.AddSeconds(10));
+delayQueue.Enqueue($&quot;Execute in 15 seconds.&quot;, DateTime.Now.AddSeconds(15));
+delayQueue.Enqueue($&quot;Execute in 20 seconds.&quot;, TimeSpan.FromSeconds(20));
+delayQueue.Enqueue($&quot;Execute in 25 seconds.&quot;, DateTime.Now.AddSeconds(25));
+delayQueue.Enqueue($&quot;Execute in 2024-07-02 14:30:15&quot;, DateTime.Parse(&quot;2024-07-02 14:30:15&quot;));
+
+//消费延时队列
+await delayQueue.DequeueAsync(s =&gt;
+{
+    output.WriteLine($&quot;{DateTime.Now}：{s}&quot;);
+
+    return Task.CompletedTask;
+});
 </code></pre>
 <h2 id="-contributors-贡献者">👯 Contributors (贡献者)</h2>
 <a href="https://github.com/2881099/FreeRedis/graphs/contributors">
